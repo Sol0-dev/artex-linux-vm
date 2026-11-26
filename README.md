@@ -21,8 +21,12 @@ and every finding stays bound to the assets and HTTP traffic that prove it.
 
 ---
 
+> **New here? Read [START_HERE.md](START_HERE.md) first** — it covers install, OpenCode Go,
+> Kilo Code, start/stop/restart, the first company scope, your first task, and the full
+> planner/worker → findings → report flow.
+>
 > **Linux VM fork** — This fork adds OpenCode Go, Kilo Code, Antigravity (agy), Playwright MCP
-> and Caido MCP, plus per-conversation Playwright reuse. Start here:
+> and Caido MCP, plus per-conversation Playwright reuse. Quick install:
 > **[docs/LINUX_VM.md](docs/LINUX_VM.md)**.
 >
 > Fork: <https://github.com/Sol0-dev/artex-linux-vm> · Upstream: <https://github.com/BaaRai/ARTEX>.

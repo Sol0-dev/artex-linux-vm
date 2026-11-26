@@ -1,5 +1,8 @@
 # Run ARTEX on a Kali or Ubuntu VM
 
+> **New here?** Read **[START_HERE.md](../START_HERE.md)** for the complete first-run
+> walkthrough, including OpenCode Go, Kilo Code, start/stop/restart and the task flow.
+
 This fork keeps the upstream ARTEX architecture and adds local-friendly providers
 and MCP integrations:
 
