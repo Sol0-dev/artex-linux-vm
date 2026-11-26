@@ -2724,5 +2724,20 @@
   "Search company…": "Şirket ara…",
   "Failed to load companies": "Şirketler yüklenemedi",
   "No company found": "Şirket bulunamadı",
-  "Manage companies": "Şirketleri yönet"
+  "Manage companies": "Şirketleri yönet",
+  "agy-local (the local bridge accepts any value)": "agy-local (the local bridge accepts any value)",
+  "Antigravity (agy · Gemini 4 Hydrogen / 3.8 Flash · Medium)": "Antigravity (agy · Gemini 4 Hydrogen / 3.8 Flash · Medium)",
+  "Kilo API Key (optional)": "Kilo API Key (optional)",
+  "Kilo Code (Baidu ERNIE-5.5-Flash-Preview · free)": "Kilo Code (Baidu ERNIE-5.5-Flash-Preview · free)",
+  "leave empty to use the Kilo CLI login (~/.local/share/kilo/auth.json)": "leave empty to use the Kilo CLI login (~/.local/share/kilo/auth.json)",
+  "Local bridge token": "Local bridge token",
+  "Only selectable for the openai format. OpenCode Go speaks Chat Completions and uses max_tokens.": "Only selectable for the openai format. OpenCode Go speaks Chat Completions and uses max_tokens.",
+  "Only selectable for the openai format. The Kilo gateway speaks Chat Completions and uses max_tokens.": "Only selectable for the openai format. The Kilo gateway speaks Chat Completions and uses max_tokens.",
+  "Only selectable for the openai format. The local agy bridge speaks Chat Completions and uses max_tokens.": "Only selectable for the openai format. The local agy bridge speaks Chat Completions and uses max_tokens.",
+  "OpenCode Go API Key": "OpenCode Go API Key",
+  "OpenCode Go (DeepSeek V4.1 Flash 1017)": "OpenCode Go (DeepSeek V4.1 Flash 1017)",
+  "OpenCode Go key (subscription required)": "OpenCode Go key (subscription required)",
+  "OpenCode Go needs an active Go subscription. ARTEX sends the required x-opencode-session header and its own User-Agent automatically; only the Go API key is required. The default model is DeepSeek V4.1 Flash 1017 (deepseek-v4.1-flash, 1M-token context).": "OpenCode Go needs an active Go subscription. ARTEX sends the required x-opencode-session header and its own User-Agent automatically; only the Go API key is required. The default model is DeepSeek V4.1 Flash 1017 (deepseek-v4.1-flash, 1M-token context).",
+  "Start the local bridge first: python3 scripts/agy_bridge.py (or scripts/start-agy-bridge.sh). It exposes only Gemini 4 Hydrogen (Medium) and Gemini 3.8 Flash (Medium) through the signed-in agy CLI. This provider is non-streaming and needs Antigravity quota on the account.": "Start the local bridge first: python3 scripts/agy_bridge.py (or scripts/start-agy-bridge.sh). It exposes only Gemini 4 Hydrogen (Medium) and Gemini 3.8 Flash (Medium) through the signed-in agy CLI. This provider is non-streaming and needs Antigravity quota on the account.",
+  "Uses the Kilo Code gateway with the free Baidu ERNIE-5.5-Flash-Preview model. Leave the key empty to reuse the Kilo CLI login; set KILO_API_KEY to override. Kilo models support native OpenAI tool calls, so ARTEX workers run normally. This provider is non-streaming for reliability with the free gateway.": "Uses the Kilo Code gateway with the free Baidu ERNIE-5.5-Flash-Preview model. Leave the key empty to reuse the Kilo CLI login; set KILO_API_KEY to override. Kilo models support native OpenAI tool calls, so ARTEX workers run normally. This provider is non-streaming for reliability with the free gateway."
 }
