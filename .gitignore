@@ -77,4 +77,6 @@ ADMIN_CREDENTIALS.md
 /poc.py
 *.pcap
 *.pcapng
-
+# local start/restart artifacts
+/artex.log
+/artex.pid

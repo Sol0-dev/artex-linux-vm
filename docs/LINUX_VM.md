@@ -67,6 +67,16 @@ grep "Setup token" artex.log
 
 Create the admin password, then configure providers in **System → LLM**.
 
+Restart after a rebuild or a configuration change without touching PostgreSQL:
+
+```bash
+./scripts/restart-local.sh            # stop + start
+./scripts/restart-local.sh --status   # running / stopped
+./scripts/restart-local.sh --stop     # stop only
+```
+
+The wrapper writes `artex.pid` and appends to `artex.log`; both are gitignored.
+
 > The UI listens on `0.0.0.0:8787` so the VM is reachable from your host. Use a
 > firewall/reverse proxy and a strong admin password on untrusted networks.
 
