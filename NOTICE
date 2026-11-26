@@ -1,0 +1,26 @@
+ARTEX — Linux VM fork
+=====================
+
+This repository is a fork of:
+
+    BaaRai / ARTEX
+    https://github.com/BaaRai/ARTEX
+
+Upstream ARTEX is licensed under the GNU Affero General Public License v3.0
+(AGPL-3.0). This fork is distributed under the same license; see LICENSE.
+
+Fork additions
+--------------
+
+- First-class OpenCode Go provider (DeepSeek V4.1 Flash 1017).
+- First-class Kilo Code provider (free Baidu ERNIE-5.5-Flash-Preview).
+- First-class Antigravity (agy) provider via a local OpenAI-compatible bridge,
+  medium-only Gemini 4 Hydrogen / Gemini 3.8 Flash.
+- Per-conversation MCP client reuse: the Playwright browser stays alive for the
+  conversation across turns, survives Stop, and is closed on conversation delete
+  (or after 30 minutes idle). Each conversation gets its own Chromium profile.
+- Linux VM setup docs and scripts for Kali/Ubuntu.
+
+No runtime data, findings, assets, reports, graph nodes, API keys, JWTs or
+credentials from any deployment are included in this repository. Runtime state
+belongs in `data/`, which is ignored by git.
