@@ -133,16 +133,24 @@ func assertEmbeddedApplied(t *testing.T, d *DB) []appliedMigration {
 		}
 	}
 	applied := readApplied(t, d)
-	want := []struct {
+	// Derive the expected rows from the embedded migration files: a hard-coded
+	// list silently breaks every time a migration is added.
+	ms, err := loadMigrations(migrationsFS())
+	if err != nil {
+		t.Fatal(err)
+	}
+	want := make([]struct {
 		version int
 		name    string
-	}{{1, llmRecordsMigration}, {2, llmUsageMigration}, {3, "0003_task_scope_icp_index.sql"}, {4, "0004_llm_usage_ts_index.sql"},
-		{5, "0005_traffic_rewrite_rules.sql"}, {6, "0006_activity_outbox.sql"}, {7, "0007_finding_report_state.sql"},
-		{8, "0008_traffic_evidence_rewrite_flag.sql"}, {9, "0009_llm_context.sql"}, {10, "0010_dashboard_usage_indexes.sql"},
-		{11, "0011_traffic_tamper_hooks.sql"}, {12, "0012_lesson_withdrawn.sql"},
-		{13, "0013_lesson_evidence_history.sql"}, {14, "0014_bedrock_gateway_profiles.sql"}}
+	}, 0, len(ms))
+	for _, m := range ms {
+		want = append(want, struct {
+			version int
+			name    string
+		}{m.version, m.name})
+	}
 	if len(applied) != len(want) {
-		t.Fatalf("schema_migrations = %+v, want versions 1 to 14", applied)
+		t.Fatalf("schema_migrations = %+v, want %d embedded migrations", applied, len(want))
 	}
 	for i, w := range want {
 		content, err := fs.ReadFile(migrationsFS(), w.name)

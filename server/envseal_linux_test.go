@@ -55,6 +55,8 @@ func TestSealedEnvironmentHandoff(t *testing.T) {
 		"ARTEX_SECRET_KEY":  "",
 		"ANTHROPIC_API_KEY": "sk-ant-test",
 		"OPENAI_API_KEY":    "=leading-equals",
+		"OPENCODE_API_KEY":  "opencode-test-key",
+		"KILO_API_KEY":      "kilo-test-key",
 		// The Bedrock gateway reads a bearer token and supports multiline headers.
 		"ARTEX_LLM_API_KEY":        "synthetic-gateway-token",
 		"ARTEX_LLM_CUSTOM_HEADERS": "X-Example-Secret: synthetic-header-value\nX-Example-Route: demo",
