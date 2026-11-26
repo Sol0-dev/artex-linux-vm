@@ -139,6 +139,9 @@ Then open:
 The first visit needs the setup token:
   grep "Setup token" artex.log
 
+Start here:
+  START_HERE.md
+
 Provider and MCP setup:
   docs/LINUX_VM.md
 
