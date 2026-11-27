@@ -24,6 +24,7 @@ is_artex_pid() {
   [[ "$p" =~ ^[0-9]+$ ]] || return 1
   kill -0 "$p" 2>/dev/null || return 1
   exe="$(readlink -f "/proc/$p/exe" 2>/dev/null || true)"
+  exe="${exe% (deleted)}"   # a rebuilt binary may leave the running inode deleted
   [[ "$(basename "${exe:-}")" == "artex" ]]
 }
 
@@ -86,7 +87,11 @@ start_artex() {
       # The shell that started start-local.sh is replaced by ./artex via exec,
       # but always trust the actual listener if the pid differs.
       actual="$(find_pid || true)"
-      [[ -n "$actual" ]] || actual="$p"
+      if [[ -z "$actual" ]]; then
+        tail -40 "$LOG_FILE" >&2 || true
+        rm -f "$PID_FILE"
+        die "health responded but no ARTEX listener was found (port conflict?)"
+      fi
       printf '%s\n' "$actual" >"$PID_FILE"
       say "ready: http://<VM-IP>:${PORT}  (pid $actual)"
       return 0
