@@ -330,8 +330,11 @@ func (c *Config) ApplyProviderDefaults() {
 		if strings.TrimSpace(c.Model) == "" {
 			c.Model = DefaultKiloModel
 		}
-		if strings.TrimSpace(c.APIKey) == "" {
-			c.APIKey = KiloAccessToken()
+		// Follow the Kilo CLI login when one exists. `kilo auth login` rotates
+		// the token, so a key stored in a profile can go stale and produce
+		// 401 INVALID_TOKEN; KILO_API_KEY is the explicit override.
+		if k := KiloAccessToken(); k != "" {
+			c.APIKey = k
 		}
 		// The free gateway's SSE stream is occasionally slow to close; the
 		// non-streaming response is reliable and still carries native tool calls.

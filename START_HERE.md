@@ -185,6 +185,17 @@ Kilo supports native OpenAI tool calls, so workers run normally. The fork uses
 non-streaming mode for the free gateway because its SSE stream is occasionally
 slow to close.
 
+Kilo Gateway tokens rotate. ARTEX follows the current CLI login automatically:
+after a later `kilo auth login`, run:
+
+```bash
+./scripts/kilo-login.sh
+# equivalent: kilo auth login && ./scripts/restart-local.sh
+```
+
+The profile may still show an old key, but the runtime reads the fresh
+`~/.local/share/kilo/auth.json` on reload. `KILO_API_KEY` is the explicit override.
+
 ### 4.3 Which provider should I use?
 
 | Situation | Use |
@@ -431,6 +442,26 @@ The engine stays idle until a profile is usable.
 Run `kilo models` once to refresh the login, then verify
 `~/.local/share/kilo/auth.json`. Or set `KILO_API_KEY`.
 
+### Kilo returns `401 INVALID_TOKEN`
+
+This is a **stale Kilo Gateway token**, not a Baidu model problem. Do not use
+`~/agents/kilo/kilo.credentials` for this: that file is the local `secops.irc`
+mesh credential (`http://127.0.0.1:5180`), not the Kilo AI gateway.
+
+Fix it with a fresh Kilo CLI login:
+
+```bash
+./scripts/kilo-login.sh
+# equivalent:
+# kilo auth login     # choose "Kilo Gateway"
+# ./scripts/restart-local.sh
+```
+
+The fork now follows the new `~/.local/share/kilo/auth.json` token automatically,
+even if the stored profile still contains the old key. Verify in **System → LLM**
+with **Test**. If you still get a 401, check that the login wrote
+`~/.local/share/kilo/auth.json` and that `KILO_API_KEY` is not set to an old value.
+
 ### Antigravity quota
 
 The bridge forwards the account’s Antigravity quota error. Wait for the reset or
@@ -484,6 +515,7 @@ grep "Setup token" artex.log
 
 # providers
 System → LLM → OpenCode Go / Kilo Code
+./scripts/kilo-login.sh        # refresh Kilo auth + restart ARTEX
 System → MCP → browser / caido
 
 # first run

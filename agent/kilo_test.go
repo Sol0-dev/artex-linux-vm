@@ -55,6 +55,24 @@ func TestKiloAccessTokenFromAuthFile(t *testing.T) {
 	}
 }
 
+// TestKiloFollowsRotatedCLILogin locks the fix for the 401 INVALID_TOKEN case:
+// a profile may contain an old Kilo token, but after `kilo auth login` rotates
+// auth.json the runtime must use the fresh CLI token without the user editing
+// the profile again.
+func TestKiloFollowsRotatedCLILogin(t *testing.T) {
+	dir := t.TempDir()
+	path := filepath.Join(dir, "auth.json")
+	if err := os.WriteFile(path, []byte(`{"kilo":{"access":"fresh-cli-token"}}`), 0o600); err != nil {
+		t.Fatal(err)
+	}
+	t.Setenv("KILO_API_KEY", "")
+	t.Setenv("KILO_AUTH_FILE", path)
+	c := ConfigFrom("kilo", "", "", "stale-profile-token", "")
+	if c.APIKey != "fresh-cli-token" {
+		t.Fatalf("api_key=%q, want the fresh CLI token", c.APIKey)
+	}
+}
+
 func TestKiloFromEnv(t *testing.T) {
 	t.Setenv("ARTEX_LLM_PROVIDER", "Kilo")
 	t.Setenv("ARTEX_LLM_MODEL", "")

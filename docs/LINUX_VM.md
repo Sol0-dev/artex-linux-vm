@@ -105,6 +105,13 @@ profile in the UI; the default model is
 `baidu/ernie-5.5-flash-preview:free` (native tool calls). Override the token with
 `KILO_API_KEY` or the file path with `KILO_AUTH_FILE`.
 
+Kilo Gateway tokens rotate. After a later `kilo auth login`, run
+`./scripts/kilo-login.sh` (or `kilo auth login && ./scripts/restart-local.sh`).
+ARTEX follows the fresh CLI token automatically even if the profile has an old
+key. A `401 INVALID_TOKEN` means the gateway token is stale; it is not a Baidu
+model failure. `~/agents/kilo/kilo.credentials` is the local secops.irc mesh
+credential and is **not** used for the Kilo AI gateway.
+
 ### Antigravity (agy)
 
 Install and sign in to the Antigravity CLI (`agy`), then start the local bridge:
